@@ -1,0 +1,27 @@
+version: '3'
+
+networks:
+  frontend:
+  backend:
+
+services:
+  php-fpm:
+    build: .devops/php-fpm
+    volumes:
+      - .:/var/www/app
+    networks:
+      - backend
+    ports:
+      - "9000:9000"
+
+  nginx:
+    build: .devops/nginx
+    volumes:
+      - .:/var/www/app
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "1234:80"
+    links:
+      - php-fpm
