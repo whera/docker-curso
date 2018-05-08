@@ -6,6 +6,7 @@ networks:
 
 services:
   php-fpm:
+    container_name: php_fpm
     build: .devops/php-fpm
     volumes:
       - .:/var/www/app
@@ -15,6 +16,7 @@ services:
       - "9000:9000"
 
   nginx:
+    container_name: nginx
     build: .devops/nginx
     volumes:
       - .:/var/www/app
