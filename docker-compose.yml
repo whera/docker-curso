@@ -12,6 +12,8 @@ services:
       - .:/var/www/app
     networks:
       - backend
+    links:
+      - mysql
     ports:
       - "9000:9000"
 
@@ -32,7 +34,7 @@ services:
     env_file:
       - .env
     container_name: mysql
-    image: mysql
+    image: mysql:5.7
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
